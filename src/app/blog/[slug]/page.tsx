@@ -2,13 +2,9 @@ import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import { notFound } from "next/navigation";
 
-type Props = {
-  params: { slug: string };
-};
-
 export const revalidate = 60; // ISR
 
-export default async function PostPage({ params }: Props) {
+export default async function PostPage({ params }: { params: any}) {
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]`,
     { slug: params.slug }
