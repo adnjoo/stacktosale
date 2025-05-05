@@ -7,36 +7,25 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
+import { siteConfig } from "@/lib/site";
 
 export default function Navbar() {
   return (
     <header className="w-full border-b p-4 flex justify-between items-center bg-white">
       <Link href="/" className="text-xl font-bold">
-        StackToSale
+        {siteConfig.name}
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link href="/services" className="px-4 py-2">
-                Services
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link href="/blog" className="px-4 py-2">
-                Blog
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild>
-              <Link href="/contact" className="px-4 py-2">
-                Contact
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          {siteConfig.navLinks.map((link) => (
+            <NavigationMenuItem key={link.href}>
+              <NavigationMenuLink asChild>
+                <Link href={link.href} className="px-4 py-2">
+                  {link.label}
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          ))}
         </NavigationMenuList>
       </NavigationMenu>
     </header>
