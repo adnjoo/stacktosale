@@ -10,6 +10,8 @@ export const allPostsQuery = `
         url
       },
       alt
-    }
+    },
+    coverImageUrl,
+    coverImageAlt
   }
 `;

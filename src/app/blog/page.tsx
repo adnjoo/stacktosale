@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { allPostsQuery } from "@/sanity/lib/queries";
-import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import PostImage from "@/components/PostImage";
 
 export const revalidate = 60;
 
@@ -14,19 +14,15 @@ export default async function BlogPage() {
       <ul className="space-y-10">
         {posts.map((post: any) => (
           <li key={post._id} className="flex gap-4">
-            {post.mainImage && (
-              <Link href={`/blog/${post.slug.current}`}>
-                <img
-                  src={urlFor(post.mainImage)
-                    .width(160)
-                    .height(100)
-                    .fit("crop")
-                    .url()}
-                  alt={post.title}
-                  className="rounded-md w-40 h-24 object-cover"
-                />
-              </Link>
-            )}
+            <PostImage
+              mainImage={post.mainImage}
+              coverImageUrl={post.coverImageUrl}
+              alt={post.coverImageAlt || post.title}
+              width={160}
+              height={100}
+              crop
+              className="rounded-md w-40 h-24 object-cover"
+            />
             <div>
               <Link href={`/blog/${post.slug.current}`}>
                 <div className="text-xl font-semibold hover:underline">
