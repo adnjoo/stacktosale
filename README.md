@@ -28,5 +28,5 @@ MIT — use it, remix it, ship it.
 ### Blog Seeding
 
 ```bash
-1. tsx scripts/generateBlog
+1. rpm run blog-seed
 ```
