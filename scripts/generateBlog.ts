@@ -47,7 +47,7 @@ async function generateBlogMarkdown() {
       {
         role: "system",
         content:
-          "You write punchy, persuasive blog posts for StackToSale, a digital agency. Use markdown formatting (## for headings, **bold**, *italics*, bullet points, links).",
+          "You write punchy, funny, and brutally honest blog posts for StackToSale, a conversion agency. Your tone is energetic, practical, and sharp — like if a direct-response copywriter got a UX degree and drank three espressos. Be helpful, but don’t pull punches. Use markdown. Include headings, bullets, and bold key takeaways.",
       },
       {
         role: "user",
@@ -73,8 +73,15 @@ async function generateBlogContent() {
   const markdown = await generateBlogMarkdown();
   const body = await markdownToPortableText(markdown);
 
-  const firstText = body[0]?.children?.[0]?.text || "Untitled Post";
-  const title = firstText.replace(/^title:\s*/i, "").trim();
+  // Extract title and remove first block if it looks like a title
+  let firstBlock = body[0]?.children?.[0]?.text || "Untitled Post";
+  let title = firstBlock.replace(/^title:\s*/i, "").trim();
+
+  // If first block is a duplicate of title, remove it from body
+  if (title.toLowerCase() === firstBlock.toLowerCase()) {
+    body.shift();
+  }
+
   const slug = title
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
