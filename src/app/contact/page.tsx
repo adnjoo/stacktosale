@@ -1,8 +1,12 @@
 "use client";
 
 import Script from "next/script";
+import { siteConfig } from "@/lib/site";
 
 export default function ContactPage() {
+  const { embedUrl, iframeTitle, scriptSrc, iframeHeight } =
+    siteConfig.contactForm;
+
   return (
     <div className="max-w-xl mx-auto px-6 py-16 text-black dark:text-white">
       <h1 className="text-4xl font-bold mb-6">Let’s Work Together</h1>
@@ -13,20 +17,20 @@ export default function ContactPage() {
 
       <div className="w-full">
         <iframe
-          data-tally-src="https://tally.so/embed/meprkl?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          data-tally-src={embedUrl}
           width="100%"
-          height="300"
+          height={iframeHeight}
           frameBorder="0"
           marginHeight={0}
           marginWidth={0}
-          title="Contact form"
+          title={iframeTitle}
           loading="lazy"
         ></iframe>
       </div>
 
       <Script
         id="tally-js"
-        src="https://tally.so/widgets/embed.js"
+        src={scriptSrc}
         strategy="afterInteractive"
         onLoad={() => {
           if (typeof window !== "undefined" && (window as any).Tally) {
