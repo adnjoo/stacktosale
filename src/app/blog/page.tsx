@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { allPostsQuery } from "@/sanity/lib/queries";
-import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import PostImage from "@/components/PostImage";
 
 export const revalidate = 60;
 
@@ -11,35 +11,35 @@ export default async function BlogPage() {
   return (
     <div className="max-w-3xl mx-auto py-10 px-4">
       <h1 className="text-4xl font-bold mb-6">Blog</h1>
-      <ul className="space-y-10">
+      <div className="grid gap-8 sm:grid-cols-2">
         {posts.map((post: any) => (
-          <li key={post._id} className="flex gap-4">
-            {post.mainImage && (
-              <Link href={`/blog/${post.slug.current}`}>
-                <img
-                  src={urlFor(post.mainImage)
-                    .width(160)
-                    .height(100)
-                    .fit("crop")
-                    .url()}
-                  alt={post.title}
-                  className="rounded-md w-40 h-24 object-cover"
-                />
-              </Link>
-            )}
-            <div>
-              <Link href={`/blog/${post.slug.current}`}>
-                <div className="text-xl font-semibold hover:underline">
-                  {post.title}
-                </div>
-              </Link>
+          <Link
+            key={post._id}
+            href={`/blog/${post.slug.current}`}
+            className="group block"
+          >
+            <div className="overflow-hidden rounded-lg shadow-sm">
+              <PostImage
+                mainImage={post.mainImage}
+                coverImageUrl={post.coverImageUrl}
+                alt={post.coverImageAlt || post.title}
+                width={640}
+                height={360}
+                crop
+                className="w-full h-40 object-cover group-hover:opacity-90 transition"
+              />
+            </div>
+            <div className="mt-3">
+              <h2 className="text-lg font-semibold group-hover:underline">
+                {post.title}
+              </h2>
               <p className="text-sm text-gray-500">
                 {new Date(post.publishedAt).toLocaleDateString()}
               </p>
             </div>
-          </li>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
