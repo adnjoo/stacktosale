@@ -36,7 +36,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div
+        <nav
           className="md:hidden absolute top-16 w-full bg-white dark:bg-black shadow-md
                transition-all duration-300 ease-out transform animate-slide-down"
         >
