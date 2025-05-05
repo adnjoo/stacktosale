@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import Image from "next/image";
 
 export default function Home() {
@@ -41,9 +42,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="mt-20 text-xs text-gray-400 text-center sm:text-left">
-        © {new Date().getFullYear()} StackToSale. Built with focus.
-      </footer>
+      <Footer />
     </div>
   );
 }
