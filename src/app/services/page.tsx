@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site";
+
 export default function ServicesPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-16 space-y-12 text-black dark:text-white">
@@ -33,7 +35,7 @@ export default function ServicesPage() {
 
       <div className="mt-12">
         <a
-          href="https://tally.so/r/your-form"
+          href={siteConfig.navLinks.contact.href}
           className="bg-black text-white dark:bg-white dark:text-black px-6 py-3 rounded-full text-sm font-medium hover:opacity-90"
           target="_blank"
           rel="noopener noreferrer"

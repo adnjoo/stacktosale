@@ -17,7 +17,7 @@ export default async function PostPage({ params }: { params: any }) {
     <article className="max-w-3xl mx-auto py-10 px-4">
       {post.mainImage && (
         <img
-          src={urlFor(post.mainImage).width(800).url()}
+          src={urlFor(post.mainImage).width(400).url()}
           alt={post.title}
           className="rounded-lg mb-6"
         />

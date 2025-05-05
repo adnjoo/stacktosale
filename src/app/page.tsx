@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { siteConfig } from "@/lib/site";
 
 export default function Home() {
   return (
@@ -7,7 +9,7 @@ export default function Home() {
         <Image
           className="dark:invert"
           src="/s2s.png"
-          alt="StackToSale logo"
+          alt={`${siteConfig.name} logo`}
           width={180}
           height={38}
           priority
@@ -18,26 +20,23 @@ export default function Home() {
         </h1>
 
         <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-prose">
-          StackToSale helps local businesses improve PPC, CRO, and unlock real
-          growth — with audits, rewrites, and tools built from r/smallbusiness
-          pain points.
+          We help local businesses level up PPC and CRO — with audits, rewrites,
+          and real tools inspired by r/smallbusiness pain points.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 w-full">
-          <a
-            href="https://tally.so/r/your-form"
-            className="bg-black text-white dark:bg-white dark:text-black px-6 py-3 rounded-full text-sm font-medium hover:opacity-90"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={siteConfig.navLinks.contact.href}
+            className="bg-black text-white dark:bg-white dark:text-black px-6 py-3 rounded-full text-sm font-medium text-center hover:opacity-90"
           >
             Get a Free Audit
-          </a>
-          <a
-            href="mailto:hello@stacktosale.com"
-            className="border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-800"
+          </Link>
+          <Link
+            href={siteConfig.navLinks.blog.href}
+            className="border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-full text-sm font-medium text-center hover:bg-gray-100 dark:hover:bg-gray-800"
           >
-            Contact Us
-          </a>
+            Read the Blog
+          </Link>
         </div>
       </main>
     </div>
