@@ -26,7 +26,9 @@ export default async function PostPage({ params }: { params: any }) {
       <p className="text-sm text-gray-500 mb-6">
         {new Date(post.publishedAt).toLocaleDateString()}
       </p>
-      <PortableText value={post.body} />
+      <article className="prose dark:prose-invert py-10">
+        <PortableText value={post.body} />
+      </article>
     </article>
   );
 }
