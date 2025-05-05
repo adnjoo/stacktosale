@@ -1,0 +1,108 @@
+import OpenAI from "openai";
+import sanityClient from "@sanity/client";
+import dotenv from "dotenv";
+import { randomUUID } from "crypto";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import { markdownToPortableText } from "@/lib/markdownToPortableText";
+
+dotenv.config();
+
+// GPT setup
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+
+// Sanity setup
+const client = sanityClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  apiVersion: "2023-01-01",
+  token: process.env.SANITY_TOKEN!,
+  useCdn: false,
+});
+
+// 🔹 Fetch recent post intros from Sanity
+async function fetchRecentPosts(limit = 3) {
+  const query = `*[_type == "post"] | order(publishedAt desc)[0...${limit}]{
+    title,
+    body[0..2]
+  }`;
+
+  const posts = await client.fetch(query);
+
+  return posts
+    .map((post: any) => {
+      const intro = post.body
+        .map((b: any) => (b.children ?? []).map((c: any) => c.text).join(" "))
+        .join("\n");
+      return `Title: ${post.title}\n${intro}`;
+    })
+    .join("\n\n---\n\n");
+}
+
+// 🔹 Generate markdown blog content
+async function generateBlogMarkdown() {
+  const context = await fetchRecentPosts();
+
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [
+      {
+        role: "system",
+        content:
+          "You write punchy, persuasive blog posts for StackToSale, a PPC/CRO agency. Use markdown formatting (## for headings, **bold**, *italics*, bullet points, links).",
+      },
+      {
+        role: "user",
+        content: `Here are some recent blog posts:\n\n${context}\n\nNow write a new blog post (600–800 words) about a common PPC mistake. Use markdown. Include 2–3 headings, bullet lists, and a CTA.`,
+      },
+    ],
+  });
+
+  return completion.choices[0].message.content ?? "";
+}
+
+// 🔹 Combine steps to get title, slug, body
+async function generateBlogContent() {
+  const markdown = await generateBlogMarkdown();
+  const body = await markdownToPortableText(markdown);
+
+  const firstText = body[0]?.children?.[0]?.text || "Untitled Post";
+  const title = firstText.replace(/^title:\s*/i, "").trim();
+  const slug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return { title, slug, body };
+}
+
+// 🔹 Push to Sanity
+async function pushToSanity({
+  title,
+  slug,
+  body,
+}: {
+  title: string;
+  slug: string;
+  body: any[];
+}) {
+  await client.create({
+    _type: "post",
+    title,
+    slug: { current: slug },
+    publishedAt: new Date().toISOString(),
+    body,
+  });
+
+  console.log(`✅ Pushed blog: ${title}`);
+}
+
+// 🔹 Run it
+export async function main() {
+  const blog = await generateBlogContent();
+  await pushToSanity(blog);
+}
+
+if (require.main === module) {
+  main().catch(console.error);
+}

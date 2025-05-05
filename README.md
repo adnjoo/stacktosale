@@ -24,3 +24,9 @@ Open [localhost:3000](http://localhost:3000) to view it.
 ## License
 
 MIT — use it, remix it, ship it.
+
+### Blog Seeding
+
+```bash
+1. npm run blog-seed
+```
