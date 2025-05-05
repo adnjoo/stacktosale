@@ -17,7 +17,7 @@ git clone https://github.com/adnjoo/stacktosale
 cd stacktosale
 npm install
 npm run dev
-````
+```
 
 Open [localhost:3000](http://localhost:3000) to view it.
 
