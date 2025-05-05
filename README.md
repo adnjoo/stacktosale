@@ -28,5 +28,5 @@ MIT — use it, remix it, ship it.
 ### Blog Seeding
 
 ```bash
-1. rpm run blog-seed
+1. npm run blog-seed
 ```
