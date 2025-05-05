@@ -121,6 +121,7 @@
   }
 }
 
+/* Typography */
 @layer utilities {
   .prose {
     max-width: 65ch;
@@ -174,5 +175,23 @@
   .prose hr {
     margin: 2rem 0;
     border-color: var(--border);
+  }
+}
+
+/* Animation */
+@layer utilities {
+  @keyframes slide-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.3s ease-out forwards;
   }
 }
