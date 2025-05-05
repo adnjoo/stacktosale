@@ -2,11 +2,11 @@
 
 export const siteConfig = {
   name: "StackToSale",
-  navLinks: [
-    { href: "/services", label: "Services" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
-  ],
+  navLinks: {
+    services: { href: "/services", label: "Services" },
+    blog: { href: "/blog", label: "Blog" },
+    contact: { href: "/contact", label: "Contact" },
+  },
   github: "https://github.com/adnjoo/stacktosale",
   contactForm: {
     embedUrl:
