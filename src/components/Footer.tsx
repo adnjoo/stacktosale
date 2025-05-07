@@ -9,7 +9,7 @@ export default function Footer() {
         <div>
           © {new Date().getFullYear()} {siteConfig.name}. Built with focus.
         </div>
-        <Link
+        {/* <Link
           href={siteConfig.github}
           target="_blank"
           rel="noopener noreferrer"
@@ -17,7 +17,7 @@ export default function Footer() {
         >
           <Github className="w-5 h-5" />
           <span className="text-sm">View source</span>
-        </Link>
+        </Link> */}
       </div>
     </footer>
   );
