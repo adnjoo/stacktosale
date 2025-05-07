@@ -5,7 +5,7 @@ export const siteConfig = {
   navLinks: {
     services: { href: "/services", label: "Services" },
     blog: { href: "/blog", label: "Blog" },
-    // caseStudies: { href: "/case-studies", label: "Case Studies" },
+    tools: { href: "/tools", label: "Tools" },
     contact: { href: "/contact", label: "Contact" },
   },
   github: "https://github.com/adnjoo/stacktosale",
