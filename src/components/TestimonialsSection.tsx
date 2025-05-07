@@ -44,7 +44,7 @@ export default function TestimonialsSection() {
         <div className="flex w-max animate-scroll-left gap-6">
           {testimonials.map((t, idx) => (
             <div
-              key={idx}
+              key={`${t.name}-${idx}`}
               className="flex-shrink-0 w-80 border border-gray-300 dark:border-gray-700 rounded-xl p-6 bg-gray-50 dark:bg-zinc-900"
             >
               <div className="flex gap-4 items-start">
