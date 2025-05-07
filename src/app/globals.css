@@ -195,3 +195,19 @@
     animation: slide-down 0.3s ease-out forwards;
   }
 }
+
+/* Continuous Scroll */
+@layer utilities {
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-left {
+    animation: scroll-left 40s linear infinite;
+  }
+}

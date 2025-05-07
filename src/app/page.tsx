@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[1fr_auto] min-h-screen p-8 sm:p-20 font-sans bg-white text-black dark:bg-black dark:text-white">
-      <main className="flex flex-col gap-8 items-center text-center sm:text-left sm:items-start max-w-xl mx-auto">
+      <main className="flex flex-col gap-8 items-center text-center sm:text-left sm:items-start max-w-4xl mx-auto">
         <Image
           className="dark:invert"
           src="/s2s.png"
@@ -42,6 +43,8 @@ export default function Home() {
 
         {/* 🧪 Add Case Studies Below CTA */}
         <CaseStudiesSection />
+
+        <TestimonialsSection />
       </main>
     </div>
   );
