@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
 
 export default function Home() {
   return (
@@ -38,6 +39,9 @@ export default function Home() {
             Read the Blog
           </Link>
         </div>
+
+        {/* 🧪 Add Case Studies Below CTA */}
+        <CaseStudiesSection />
       </main>
     </div>
   );
