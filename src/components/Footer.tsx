@@ -1,6 +1,4 @@
 import { siteConfig } from "@/lib/site";
-import { Github } from "lucide-react";
-import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -9,15 +7,6 @@ export default function Footer() {
         <div>
           © {new Date().getFullYear()} {siteConfig.name}. Built with focus.
         </div>
-        {/* <Link
-          href={siteConfig.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 hover:text-black dark:hover:text-white"
-        >
-          <Github className="w-5 h-5" />
-          <span className="text-sm">View source</span>
-        </Link> */}
       </div>
     </footer>
   );
