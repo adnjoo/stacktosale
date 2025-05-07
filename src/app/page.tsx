@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import CaseStudiesSection from "@/components/CaseStudiesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[1fr_auto] min-h-screen p-8 sm:p-20 font-sans bg-white text-black dark:bg-black dark:text-white">
-      <main className="flex flex-col gap-8 items-center text-center sm:text-left sm:items-start max-w-xl mx-auto">
+      <main className="flex flex-col gap-8 items-center text-center sm:text-left sm:items-start max-w-4xl mx-auto">
         <Image
           className="dark:invert"
           src="/s2s.png"
@@ -42,6 +43,24 @@ export default function Home() {
 
         {/* 🧪 Add Case Studies Below CTA */}
         <CaseStudiesSection />
+
+        <TestimonialsSection />
+
+        <section className="mt-24 w-full">
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center sm:text-left">
+            Seen enough? Let’s talk.
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-base mt-2 mb-4">
+            No pressure, no jargon — just a free audit and practical advice you
+            can act on immediately.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-2 inline-block bg-black text-white dark:bg-white dark:text-black px-5 py-2.5 rounded-full text-sm font-medium hover:opacity-90"
+          >
+            Claim Your Free Audit
+          </Link>
+        </section>
       </main>
     </div>
   );
