@@ -18,6 +18,7 @@ export default function TwitterCardChecker() {
       const data = await res.json();
       setCard(data);
     } catch (err) {
+      console.error("Fetch error:", err);
       setCard({ error: "Failed to fetch." });
     } finally {
       setLoading(false);
