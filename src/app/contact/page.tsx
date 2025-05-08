@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Script from "next/script";
 import { siteConfig } from "@/lib/site";
 import { Spinner } from "@/components/Spinner";
@@ -10,6 +10,21 @@ export default function ContactPage() {
     siteConfig.contactForm;
 
   const [loading, setLoading] = useState(true);
+  const [scriptReady, setScriptReady] = useState(false);
+
+  useEffect(() => {
+    const retryTallyLoad = () => {
+      if (typeof window !== "undefined" && (window as any).Tally?.loadEmbeds) {
+        (window as any).Tally.loadEmbeds();
+      }
+    };
+
+    if (scriptReady) {
+      // Retry embed load just in case
+      const timeout = setTimeout(() => retryTallyLoad(), 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [scriptReady]);
 
   return (
     <div className="max-w-xl mx-auto px-6 py-16 text-black dark:text-white">
@@ -30,8 +45,13 @@ export default function ContactPage() {
           marginWidth={0}
           title={iframeTitle}
           loading="lazy"
-          onLoad={() => setLoading(false)}
-        ></iframe>
+          onLoad={() => {
+            setLoading(false);
+            if ((window as any).Tally?.loadEmbeds) {
+              (window as any).Tally.loadEmbeds();
+            }
+          }}
+        />
       </div>
 
       <Script
@@ -39,7 +59,8 @@ export default function ContactPage() {
         src={scriptSrc}
         strategy="afterInteractive"
         onLoad={() => {
-          if (typeof window !== "undefined" && (window as any).Tally) {
+          setScriptReady(true);
+          if ((window as any).Tally?.loadEmbeds) {
             (window as any).Tally.loadEmbeds();
           }
         }}
