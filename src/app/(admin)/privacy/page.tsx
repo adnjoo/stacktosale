@@ -41,7 +41,14 @@ export default function PrivacyPage() {
       <h2 className="text-xl font-semibold mt-8 mb-2">5. Your Rights</h2>
       <p className="mb-4">
         You may request to view, edit, or delete your personal information by
-        contacting us at hello@stacktosale.com.
+        contacting us at{" "}
+        <a
+          href="mailto:hello@stacktosale.com"
+          className="underline text-blue-600"
+        >
+          hello@stacktosale.com
+        </a>
+        .
       </p>
 
       <h2 className="text-xl font-semibold mt-8 mb-2">
