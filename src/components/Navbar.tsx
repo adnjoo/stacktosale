@@ -73,6 +73,7 @@ export default function Navbar() {
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
           className="md:hidden p-2"
+          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
         >
           {mobileOpen ? (
             <X className="w-6 h-6" />
