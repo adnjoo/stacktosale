@@ -8,6 +8,9 @@ export const siteConfig = {
     tools: { href: "/tools", label: "Tools" },
     contact: { href: "/contact", label: "Contact" },
   },
+  footerLinks: {
+    privacy: { href: "/privacy", label: "Privacy" },
+  },
   github: "https://github.com/adnjoo/stacktosale",
   contactForm: {
     embedUrl:
