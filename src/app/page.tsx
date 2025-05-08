@@ -33,7 +33,7 @@ export default function Home() {
           Get a Free Audit
         </Link>
         <Link
-          href={siteConfig.navLinks.blog.href}
+          href={siteConfig.navLinks.resources.subLinks.blog.href}
           className="border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-full text-sm font-medium text-center hover:bg-gray-100 dark:hover:bg-gray-800"
         >
           Read the Blog
