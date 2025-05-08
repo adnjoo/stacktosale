@@ -10,6 +10,7 @@ export const siteConfig = {
   },
   footerLinks: {
     privacy: { href: "/privacy", label: "Privacy" },
+    terms: { href: "/terms", label: "Terms" },
   },
   github: "https://github.com/adnjoo/stacktosale",
   contactForm: {
