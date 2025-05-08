@@ -211,3 +211,8 @@
     animation: scroll-left 40s linear infinite;
   }
 }
+
+/* Prevent layout shift from scrollbar on menu toggle */
+html {
+  scrollbar-gutter: stable;
+}
