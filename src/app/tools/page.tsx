@@ -1,4 +1,3 @@
-// app/tools/page.tsx
 "use client";
 
 import Link from "next/link";
@@ -9,6 +8,8 @@ export default function ToolsPage() {
       name: "Twitter Card Preview Tool",
       description: "Preview how your website will appear on Twitter.",
       href: "/tools/twitter-card-checker",
+      image:
+        "https://c.static-nike.com/a/images/w_1920,c_limit/bzl2wmsfh7kgdkufrrjq/image.jpg",
     },
   ];
 
@@ -25,18 +26,24 @@ export default function ToolsPage() {
             key={tool.href}
             className="border rounded-xl p-4 bg-white dark:bg-zinc-900 shadow-sm"
           >
-            <h2 className="text-xl font-semibold mb-1">
-              <Link href={tool.href} className="hover:underline">
+            <Link href={tool.href} className="block group">
+              {tool.image && (
+                <img
+                  src={tool.image}
+                  alt={tool.name}
+                  className="rounded-md mb-4 h-40 w-full object-cover group-hover:opacity-90 transition"
+                />
+              )}
+              <h2 className="text-xl font-semibold mb-1 group-hover:underline">
                 {tool.name}
-              </Link>
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-sm">
-              {tool.description}
-            </p>
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
+                {tool.description}
+              </p>
+            </Link>
           </li>
         ))}
       </ul>
     </div>
   );
 }
-

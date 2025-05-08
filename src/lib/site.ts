@@ -3,9 +3,15 @@
 export const siteConfig = {
   name: "StackToSale",
   navLinks: {
-    services: { href: "/services", label: "Services" },
-    blog: { href: "/blog", label: "Blog" },
-    tools: { href: "/tools", label: "Tools" },
+    resources: {
+      label: "Resources",
+      subLinks: {
+        services: { href: "/services", label: "Services" },
+        blog: { href: "/blog", label: "Blog" },
+        tools: { href: "/tools", label: "Tools" },
+      },
+    },
+    about: { href: "/about", label: "About" },
     contact: { href: "/contact", label: "Contact" },
   },
   footerLinks: {
