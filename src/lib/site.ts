@@ -18,7 +18,10 @@ export const siteConfig = {
     privacy: { href: "/privacy", label: "Privacy" },
     terms: { href: "/terms", label: "Terms" },
   },
-  github: "https://github.com/adnjoo/stacktosale",
+  socials: {
+    youtube: "https://youtube.com/@marketingwithdrew",
+    x: "https://x.com/adnjoo",
+  },
   contactForm: {
     embedUrl:
       "https://tally.so/embed/meprkl?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1",
