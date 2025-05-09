@@ -45,15 +45,15 @@ export default function CareersPage() {
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">💌 Want in?</h2>
         <p className="mb-4">
-          Drop your info here. We'll ping you when the timing is right.
+          Drop your info here. We&apos;ll ping you when the timing is right.
         </p>
         <iframe
           src={embedUrl}
           width="100%"
           height={iframeHeight || "300"}
           frameBorder="0"
-          marginHeight="0"
-          marginWidth="0"
+          marginHeight={0}
+          marginWidth={0}
           title={iframeTitle || "Join Our Talent Pool"}
         ></iframe>
       </section>
