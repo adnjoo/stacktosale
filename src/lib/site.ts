@@ -9,6 +9,7 @@ export const siteConfig = {
         services: { href: "/services", label: "Services" },
         blog: { href: "/blog", label: "Blog" },
         tools: { href: "/tools", label: "Tools" },
+        careers: { href: "/careers", label: "Careers" },
       },
     },
     about: { href: "/about", label: "About" },
