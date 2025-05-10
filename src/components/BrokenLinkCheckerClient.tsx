@@ -19,13 +19,22 @@ export default function BrokenLinkCheckerClient() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const ensureProtocol = (url: string) => {
+    return /^https?:\/\//i.test(url.trim())
+      ? url.trim()
+      : `https://${url.trim()}`;
+  };
+
   const checkLinks = async (url: string) => {
+    const fullUrl = ensureProtocol(url);
     setLoading(true);
     setError(null);
     setResults([]);
 
     try {
-      const res = await fetch(`/api/fetch-links?url=${encodeURIComponent(url)}`);
+      const res = await fetch(
+        `/api/fetch-links?url=${encodeURIComponent(fullUrl)}`
+      );
       const { links } = await res.json();
 
       const statusRes = await fetch("/api/check-link-status", {
@@ -46,10 +55,11 @@ export default function BrokenLinkCheckerClient() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const correctedUrl = ensureProtocol(targetUrl);
     const newParams = new URLSearchParams(searchParams.toString());
-    newParams.set("url", targetUrl);
+    newParams.set("url", correctedUrl);
     router.push(`/tools/broken-link-checker?${newParams.toString()}`);
-    checkLinks(targetUrl);
+    checkLinks(correctedUrl);
   };
 
   useEffect(() => {
@@ -67,7 +77,7 @@ export default function BrokenLinkCheckerClient() {
 
       <form onSubmit={handleSubmit} className="flex gap-4 mb-6">
         <input
-          type="url"
+          type="text" // ← Allows inputs like 'google.com'
           value={targetUrl}
           onChange={(e) => setTargetUrl(e.target.value)}
           placeholder="https://example.com"
