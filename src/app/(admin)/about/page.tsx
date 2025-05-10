@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site";
+
 export default function AboutPage() {
     return (
       <main className="max-w-screen-md mx-auto px-6 py-16 text-gray-800 dark:text-white">
@@ -15,7 +17,7 @@ export default function AboutPage() {
               Founder of StackToSale
             </p>
             <a
-              href="https://www.linkedin.com/in/andrewnjoo"
+              href={siteConfig.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-blue-600 dark:text-blue-400 underline mt-1 inline-block"

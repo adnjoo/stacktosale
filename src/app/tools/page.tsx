@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 export default function ToolsPage() {
+  // TODO: move to siteConfig
   const tools = [
     {
       name: "Twitter Card Preview Tool",
@@ -10,6 +11,13 @@ export default function ToolsPage() {
       href: "/tools/twitter-card-checker",
       image:
         "https://c.static-nike.com/a/images/w_1920,c_limit/bzl2wmsfh7kgdkufrrjq/image.jpg",
+    },
+    {
+      name: "Broken Link Checker",
+      description: "Find dead links on your webpage before your visitors do.",
+      href: "/tools/broken-link-checker",
+      image:
+        "/broken-links.png",
     },
   ];
 
