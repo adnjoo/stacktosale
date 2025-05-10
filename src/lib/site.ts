@@ -22,6 +22,7 @@ export const siteConfig = {
   socials: {
     youtube: "https://youtube.com/@marketingwithdrew",
     x: "https://x.com/adnjoo",
+    linkedin: "https://www.linkedin.com/in/adnjoo",
   },
   contactForm: {
     embedUrl:
